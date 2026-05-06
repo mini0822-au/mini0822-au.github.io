@@ -9,7 +9,6 @@
 <meta name="description" content="AUmbrella Ventures is an Australian venture capital fund investing in early-stage startups across Australia, Korea, and the US. 엄브렐라 벤처스 — bridging AU, KR, and global markets.">
 <meta name="keywords" content="AUmbrella Ventures, aumbrellavc, 엄브렐라벤처스, 엄브렐라 VC, Australian venture capital, Australia VC fund, startup investment Australia, early stage VC, AU KR US startup, Joon Min Yun">
 <meta name="robots" content="index, follow">
-  <meta name="naver-site-verification" content="e45babb9de2de6ca774e742db50d0565f46b1db9" />
 <link rel="canonical" href="https://aumbrellavc.com/">
 
 <!-- Open Graph (카카오, 페이스북, 링크드인 공유시 미리보기) -->
@@ -733,7 +732,11 @@ const companies = [
   "Raenest", "Arintra", "Chipper Cash", "OpenEnvoy", "Pearler fintech"
 ];
 
-const PROXY = "https://api.allorigins.win/get?url=";
+const PROXIES = [
+  url => `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`,
+  url => `https://corsproxy.io/?${encodeURIComponent(url)}`,
+  url => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`,
+];
 
 function encodeRSS(company) {
   return `https://news.google.com/rss/search?q=${encodeURIComponent(company)}&hl=en-AU&gl=AU&ceid=AU:en`;
@@ -761,15 +764,26 @@ function parseNewsXML(xmlStr, company) {
 }
 
 async function fetchCompanyNews(company) {
-  try {
-    const rssUrl = encodeRSS(company);
-    const resp = await fetch(PROXY + encodeURIComponent(rssUrl));
-    if (!resp.ok) throw new Error("fetch failed");
-    const data = await resp.json();
-    return parseNewsXML(data.contents, company);
-  } catch {
-    return [];
+  const rssUrl = encodeRSS(company);
+  for (const proxyFn of PROXIES) {
+    try {
+      const resp = await fetch(proxyFn(rssUrl));
+      if (!resp.ok) continue;
+      const text = await resp.text();
+      let xml;
+      try {
+        const json = JSON.parse(text);
+        xml = json.contents || text;
+      } catch {
+        xml = text;
+      }
+      const items = parseNewsXML(xml, company);
+      if (items.length > 0) return items;
+    } catch {
+      continue;
+    }
   }
+  return [];
 }
 
 let allNews = [];
