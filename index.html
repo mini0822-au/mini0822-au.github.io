@@ -732,11 +732,7 @@ const companies = [
   "Raenest", "Arintra", "Chipper Cash", "OpenEnvoy", "Pearler fintech"
 ];
 
-const PROXIES = [
-  url => `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`,
-  url => `https://corsproxy.io/?${encodeURIComponent(url)}`,
-  url => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`,
-];
+const PROXY = "https://api.allorigins.win/get?url=";
 
 function encodeRSS(company) {
   return `https://news.google.com/rss/search?q=${encodeURIComponent(company)}&hl=en-AU&gl=AU&ceid=AU:en`;
@@ -764,26 +760,15 @@ function parseNewsXML(xmlStr, company) {
 }
 
 async function fetchCompanyNews(company) {
-  const rssUrl = encodeRSS(company);
-  for (const proxyFn of PROXIES) {
-    try {
-      const resp = await fetch(proxyFn(rssUrl));
-      if (!resp.ok) continue;
-      const text = await resp.text();
-      let xml;
-      try {
-        const json = JSON.parse(text);
-        xml = json.contents || text;
-      } catch {
-        xml = text;
-      }
-      const items = parseNewsXML(xml, company);
-      if (items.length > 0) return items;
-    } catch {
-      continue;
-    }
+  try {
+    const rssUrl = encodeRSS(company);
+    const resp = await fetch(PROXY + encodeURIComponent(rssUrl));
+    if (!resp.ok) throw new Error("fetch failed");
+    const data = await resp.json();
+    return parseNewsXML(data.contents, company);
+  } catch {
+    return [];
   }
-  return [];
 }
 
 let allNews = [];
