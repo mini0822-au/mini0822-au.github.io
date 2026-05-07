@@ -116,6 +116,12 @@ nav {
   content: ''; display: block; width: 2rem; height: 1px; background: var(--ochre);
 }
 
+.lang-ko .hero-heading {
+  font-size: clamp(2rem, 6vw, 4rem) !important;
+  line-height: 1.2;
+}
+.lang-ko .hero-tag { font-size: 0.8rem; }
+
 .hero-heading {
   font-family: 'Playfair Display', serif;
   font-size: clamp(3.5rem, 7vw, 6.5rem);
@@ -852,7 +858,7 @@ const translations = {
     thesis: "투자 철학", portfolio: "포트폴리오", news: "뉴스", people: "팀",
     langBtn: "English",
     heroTag: "시드니, 호주 · 글로벌 투자",
-    heroH1: "다음을 만드는<br>창업자를<br><em>지원합니다</em>",
+    heroH1: "도전하는<br>창업자를<br><em>응원합니다</em>",
     heroSub: "AUmbrella Ventures는 호주와 글로벌 시장을 연결하며, 산업을 재편하는 스타트업에 자본·전문성·네트워크를 제공합니다.",
     viewPortfolio: "포트폴리오 보기", workWithUs: "함께 일하기",
     partnersHeading: "투자 파트너",
@@ -863,6 +869,7 @@ const translations = {
 let currentLang = "en";
 function toggleLang() {
   currentLang = currentLang === "en" ? "ko" : "en";
+  document.body.classList.toggle("lang-ko", currentLang === "ko");
   const t = translations[currentLang];
   document.getElementById("langToggle").textContent = t.langBtn;
   const navLinks = document.querySelectorAll(".nav-links a");
