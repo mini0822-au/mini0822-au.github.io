@@ -38,6 +38,72 @@
   },
   "areaServed": ["Australia", "Korea", "United States"]
 }
+
+// Language Toggle
+const translations = {
+  en: {
+    thesis: "Thesis",
+    portfolio: "Portfolio",
+    news: "News",
+    people: "People",
+    connect: "Connect →",
+    langBtn: "한국어",
+    heroTag: "Sydney, Australia · Global Reach",
+    heroH1: "Backing founders<br>who build the<br><em>next thing</em>",
+    heroSub: "AUmbrella Ventures bridges Australia and global markets — connecting capital, expertise, and networks to the startups reshaping industries.",
+    viewPortfolio: "View Portfolio",
+    workWithUs: "Work with us",
+    partnersHeading: "함께 협업하는 투자 파트너 / Co-investing Partners",
+  },
+  ko: {
+    thesis: "투자 철학",
+    portfolio: "포트폴리오",
+    news: "뉴스",
+    people: "팀",
+    connect: "연락하기 →",
+    langBtn: "English",
+    heroTag: "시드니, 호주 · 글로벌 투자",
+    heroH1: "다음을 만드는<br>창업자를<br><em>지원합니다</em>",
+    heroSub: "AUmbrella Ventures는 호주와 글로벌 시장을 연결하며, 산업을 재편하는 스타트업에 자본·전문성·네트워크를 제공합니다.",
+    viewPortfolio: "포트폴리오 보기",
+    workWithUs: "함께 일하기",
+    partnersHeading: "투자 파트너",
+  }
+};
+
+let currentLang = "en";
+
+function toggleLang() {
+  currentLang = currentLang === "en" ? "ko" : "en";
+  const t = translations[currentLang];
+  const btn = document.getElementById("langToggle");
+  if (btn) btn.textContent = t.langBtn;
+
+  // Nav links
+  const navLinks = document.querySelectorAll(".nav-links a");
+  const navKeys = ["thesis", "portfolio", "news", "people"];
+  navLinks.forEach((a, i) => { if (navKeys[i]) a.textContent = t[navKeys[i]]; });
+
+  // Hero
+  const heroTag = document.querySelector(".hero-tag");
+  if (heroTag) heroTag.textContent = t.heroTag;
+  const heroH1 = document.querySelector(".hero-heading");
+  if (heroH1) heroH1.innerHTML = t.heroH1;
+  const heroSub = document.querySelector(".hero-sub");
+  if (heroSub) heroSub.textContent = t.heroSub;
+  const btns = document.querySelectorAll(".hero-actions a");
+  if (btns[0]) btns[0].textContent = t.viewPortfolio;
+  if (btns[1]) btns[1].textContent = t.workWithUs;
+
+  // Partners heading
+  const partnerH2 = document.getElementById("partnersHeading");
+  if (partnerH2) partnerH2.textContent = t.partnersHeading;
+
+  // Plan H sub
+  const planHSub = document.getElementById("planHSub");
+  if (planHSub) planHSub.textContent = currentLang === "ko" ? "호반그룹 CVC · 호주 파트너" : "Hoban Group CVC · Australian Partner";
+}
+
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -89,6 +155,7 @@ nav {
 }
 
 .nav-logo span { color: var(--ochre); }
+
 
 .nav-links { display: flex; gap: 2.5rem; list-style: none; }
 .nav-links a {
@@ -495,13 +562,14 @@ footer {
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#"><span>AU</span>mbrella Ventures</a>
+  <a class="nav-logo" href="#"><img src="flag-au.jpg" style="height:13px;vertical-align:middle;margin-right:5px;border-radius:2px"><span>AU</span>mbrella Ventures<img src="flag-kor.jpg" style="height:13px;vertical-align:middle;margin-left:5px;border-radius:2px"></a>
   <ul class="nav-links">
     <li><a href="#thesis">Thesis</a></li>
     <li><a href="#portfolio">Portfolio</a></li>
     <li><a href="#news">News</a></li>
     <li><a href="#people">People</a></li>
   </ul>
+  <button id="langToggle" onclick="toggleLang()" style="background:none;border:1px solid var(--ochre);color:var(--ochre);padding:0.4rem 0.9rem;border-radius:4px;cursor:pointer;font-size:0.8rem;margin-right:0.5rem;font-family:inherit">한국어</button>
   <a class="nav-cta" href="#contact">Connect →</a>
 </nav>
 
@@ -627,10 +695,16 @@ footer {
     <h2 class="section-heading">People behind the portfolio</h2>
     <div class="people-grid">
       <div class="person-card">
-        <div class="person-initials">J</div>
-        <div class="person-name">Jun Min Yoon</div>
-        <div class="person-role">Founder & Managing Partner</div>
+        <div class="person-initials">Yun</div>
+        <div class="person-name">Joon Min Yun</div>
+        <div class="person-role">Founder &amp; Managing Partner</div>
         <div class="person-bio">Bridging Australia and Korea's startup ecosystems. Background in investment strategy and business advisory across AU, KR, and US markets.</div>
+      </div>
+      <div class="person-card">
+        <div class="person-initials">Choi</div>
+        <div class="person-name">Yoo Hwan Choi</div>
+        <div class="person-role">Venture Partner</div>
+        <div class="person-bio">Seasoned professional with extensive experience in consulting, entrepreneurship, and TIPs program evaluation.</div>
       </div>
     </div>
   </div>
@@ -640,12 +714,12 @@ footer {
 <section class="partners-section">
   <div class="partners-inner fade-in">
     <div class="section-tag">Investment Partners</div>
-    <h2 class="section-heading" style="font-size:1.5rem;color:var(--sand)">We co-invest alongside</h2>
+    <h2 class="section-heading" style="font-size:1.5rem;color:var(--sand)" id="partnersHeading">Co-investing Partners</h2>
     <div class="partners-row">
-      <div class="partner-item">Skyring Ventures</div>
       <div class="partner-item">TEN13</div>
       <div class="partner-item">D3 Jubilee</div>
       <div class="partner-item">Antler</div>
+      <div class="partner-item">Plan H Ventures<span style="font-size:0.75rem;display:block;color:var(--stone);margin-top:0.2rem" id="planHSub">Hoban Group CVC · Australian Partner</span></div>
     </div>
   </div>
 </section>
@@ -664,7 +738,7 @@ footer {
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo"><span>AU</span>mbrella Ventures</div>
-  <div class="footer-legal">© 2025 AUmbrella Ventures · J3 Ventures as Trustee for J3 Trust · Sydney, Australia</div>
+  <div class="footer-legal">© 2021 AUmbrella Ventures · Sydney, Australia</div>
 </footer>
 
 <script>
@@ -673,7 +747,7 @@ const portfolio = [
   { name:"Instant",      sector:"eCommerce",  region:"AU", flag:"🇦🇺", url:"http://www.instant.one",              desc:"Revenue engine transforming anonymous traffic into profit." },
   { name:"Pearler",      sector:"Fintech",    region:"AU", flag:"🇦🇺", url:"https://pearler.com/home",            desc:"One-stop financial platform for investing, home buying, and retirement." },
   { name:"Tixel",        sector:"Marketplace",region:"AU", flag:"🇦🇺", url:"https://tixel.com/au/",              desc:"Australia's leading safe ticket resale marketplace." },
-  { name:"Nominal Systems",sector:"Aerospace",region:"AU", flag:"🇦🇺", url:"https://www.nominalsys.com/",        desc:"AI-powered tools for space safety and sustainability." },
+  { name:"Zendir",          sector:"Aerospace",region:"AU", flag:"🇦🇺", url:"https://zendir.io",                  desc:"AI-powered tools for space safety and sustainability." },
   { name:"Tiliter",      sector:"AI",         region:"AU", flag:"🇦🇺", url:"https://www.tiliter.com/",          desc:"AI product recognition and vision technology across industries." },
   { name:"Mercu",        sector:"AI",         region:"AU", flag:"🇦🇺", url:"http://www.mercu.com",              desc:"AI-powered recruitment automation for volume hiring." },
   { name:"Smileyscope",  sector:"Healthcare", region:"AU", flag:"🇦🇺", url:"https://www.smileyscope.com.au/",   desc:"Evidence-based digital therapeutics transforming patient outcomes." },
@@ -683,21 +757,28 @@ const portfolio = [
   { name:"Switchboard",  sector:"SaaS",       region:"AU", flag:"🇦🇺", url:"https://www.switchboardcloud.com/", desc:"Seamless supply chain data integration for digital operations." },
   { name:"Vitruvian",    sector:"Healthcare", region:"AU", flag:"🇦🇺", url:"https://vitruvianform.com/",        desc:"Every weight on hand, elite trainers in your living room." },
   { name:"Carted",       sector:"eCommerce",  region:"AU", flag:"🇦🇺", url:"https://www.carted.com/",          desc:"Save products from any store, get restock and sale alerts." },
-  { name:"D3 Jubilee",   sector:"VC",         region:"KOR",flag:"🇰🇷", url:"https://d3jubilee.com/Portfolio",  desc:"Global impact VC active across Korea, US, Asia, and Africa." },
-  { name:"Antler Korea", sector:"VC",         region:"KOR",flag:"🇰🇷", url:"https://www.antler.co/location/korea", desc:"Turning founder visions into reality — backing the best people." },
   { name:"PFC Technology",sector:"Fintech",   region:"KOR",flag:"🇰🇷", url:"https://www.pfct.co.kr/en",        desc:"Innovative financial market solutions with AI technology." },
   { name:"Media Scope",  sector:"Entertainment",region:"KOR",flag:"🇰🇷",url:"https://www.mediascope.kr/",      desc:"No.1 smart sing (online karaoke) platform in Korea." },
-  { name:"Raenest",      sector:"Fintech",    region:"US", flag:"🌍",  url:"https://raenest.com",              desc:"Multi-currency accounts built for Africa, moving at global speed." },
+  { name:"Raenest",      sector:"Fintech",    region:"US", flag:"🇺🇸",  url:"https://raenest.com",              desc:"Multi-currency accounts built for Africa, moving at global speed." },
   { name:"Arintra",      sector:"Healthcare", region:"US", flag:"🇺🇸", url:"https://arintra.com",              desc:"Healthcare technology founded by serial entrepreneurs." },
   { name:"After.com",    sector:"Services",   region:"US", flag:"🇺🇸", url:"https://www.after.com/",           desc:"Compassionate online cremation services, simple and affordable." },
   { name:"TANGGapp",     sector:"Fintech",    region:"US", flag:"🇺🇸", url:"https://www.tanggapp.com/",        desc:"Easy US–Philippines money transfers at your fingertips." },
   { name:"OpenEnvoy",    sector:"Fintech",    region:"US", flag:"🇺🇸", url:"https://www.openenvoy.com/",       desc:"AI-powered AP automation: eliminate work, optimise cash flow." },
-  { name:"Chipper Cash", sector:"Fintech",    region:"US", flag:"🌍",  url:"https://www.chippercash.com/",     desc:"Free international transfers, cards and investing for Africans." },
+  { name:"Chipper Cash", sector:"Fintech",    region:"US", flag:"🇺🇸",  url:"https://www.chippercash.com/",     desc:"Free international transfers, cards and investing for Africans." },
   { name:"Copper",       sector:"Fintech",    region:"US", flag:"🇺🇸", url:"https://www.getcopper.com/",       desc:"Banking app for teens and parents — building financial literacy." },
-  { name:"Zingbus",      sector:"Transport",  region:"US", flag:"🇮🇳", url:"http://www.zingbus.com",           desc:"Safe, modern intercity bus travel across India." },
+  { name:"Zingbus",      sector:"Transport",  region:"IN", flag:"🇮🇳", url:"http://www.zingbus.com",           desc:"Safe, modern intercity bus travel across India." },
+  { name:"D3 Jubilee",   sector:"VC · LP", region:"KOR",flag:"🇰🇷", url:"https://d3jubilee.com/Portfolio",  desc:"Global impact VC active across Korea, US, Asia, and Africa. (KR VC — LP Investment)" },
+  { name:"Antler Korea", sector:"VC · LP", region:"KOR",flag:"🇰🇷", url:"https://www.antler.co/location/korea", desc:"Turning founder visions into reality — backing the best people. (KR VC — LP Investment)" },
 ];
 
 // Populate portfolio
+function getFlagImg(region) {
+  const map = { AU: "flag-au.jpg", KOR: "flag-kor.jpg", US: "flag-us.jpg", IN: "flag-in.jpg" };
+  return map[region] || "flag-us.svg";
+};
+  return map[region] || "🌍";
+}
+
 function renderPortfolio(filter="all") {
   const grid = document.getElementById("portfolioGrid");
   const filtered = filter === "all" ? portfolio : portfolio.filter(c =>
@@ -706,7 +787,7 @@ function renderPortfolio(filter="all") {
   );
   grid.innerHTML = filtered.map(c => `
     <div class="portfolio-card" data-region="${c.region}" data-sector="${c.sector}">
-      <div class="card-sector"><span class="card-flag">${c.flag}</span>${c.sector} · ${c.region}</div>
+      <div class="card-sector"><img src="${getFlagImg(c.region)}" style="height:11px;vertical-align:middle;margin-right:5px;border-radius:1px">${c.sector}</div>
       <div class="card-name">${c.name}</div>
       <div class="card-desc">${c.desc}</div>
       <a class="card-link" href="${c.url}" target="_blank" rel="noopener">Visit site →</a>
@@ -726,13 +807,14 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 
 // ─── NEWS FEED via Google News RSS ───
 const companies = [
-  "Instant.one", "Pearler", "Tixel", "Nominal Systems", "Tiliter",
+  "Instant", "Pearler", "Tixel", "Zendir", "Tiliter",
   "Mercu", "Smileyscope", "Everlab", "Amplified Intelligence", "BrightPay",
-  "Switchboard Cloud", "Vitruvian Form", "D3 Jubilee", "PFC Technology",
-  "Raenest", "Arintra", "Chipper Cash", "OpenEnvoy", "Pearler fintech"
+  "Switchboard", "Vitruvian", "PFC Technology", "Media Scope",
+  "Raenest", "Arintra", "Chipper Cash", "OpenEnvoy", "TANGGapp",
+  "D3 Jubilee", "Antler Korea"
 ];
 
-const PROXY = "https://api.allorigins.win/get?url=";
+const PROXY = "https://news-proxy.mini0822.workers.dev/?url=";
 
 function encodeRSS(company) {
   return `https://news.google.com/rss/search?q=${encodeURIComponent(company)}&hl=en-AU&gl=AU&ceid=AU:en`;
@@ -764,8 +846,8 @@ async function fetchCompanyNews(company) {
     const rssUrl = encodeRSS(company);
     const resp = await fetch(PROXY + encodeURIComponent(rssUrl));
     if (!resp.ok) throw new Error("fetch failed");
-    const data = await resp.json();
-    return parseNewsXML(data.contents, company);
+    const xml = await resp.text();
+    return parseNewsXML(xml, company);
   } catch {
     return [];
   }
@@ -846,6 +928,72 @@ window.addEventListener('scroll', () => {
     ? 'rgba(28,28,26,0.95)'
     : 'rgba(28,28,26,0.85)';
 });
+
+// Language Toggle
+const translations = {
+  en: {
+    thesis: "Thesis",
+    portfolio: "Portfolio",
+    news: "News",
+    people: "People",
+    connect: "Connect →",
+    langBtn: "한국어",
+    heroTag: "Sydney, Australia · Global Reach",
+    heroH1: "Backing founders<br>who build the<br><em>next thing</em>",
+    heroSub: "AUmbrella Ventures bridges Australia and global markets — connecting capital, expertise, and networks to the startups reshaping industries.",
+    viewPortfolio: "View Portfolio",
+    workWithUs: "Work with us",
+    partnersHeading: "함께 협업하는 투자 파트너 / Co-investing Partners",
+  },
+  ko: {
+    thesis: "투자 철학",
+    portfolio: "포트폴리오",
+    news: "뉴스",
+    people: "팀",
+    connect: "연락하기 →",
+    langBtn: "English",
+    heroTag: "시드니, 호주 · 글로벌 투자",
+    heroH1: "다음을 만드는<br>창업자를<br><em>지원합니다</em>",
+    heroSub: "AUmbrella Ventures는 호주와 글로벌 시장을 연결하며, 산업을 재편하는 스타트업에 자본·전문성·네트워크를 제공합니다.",
+    viewPortfolio: "포트폴리오 보기",
+    workWithUs: "함께 일하기",
+    partnersHeading: "투자 파트너",
+  }
+};
+
+let currentLang = "en";
+
+function toggleLang() {
+  currentLang = currentLang === "en" ? "ko" : "en";
+  const t = translations[currentLang];
+  const btn = document.getElementById("langToggle");
+  if (btn) btn.textContent = t.langBtn;
+
+  // Nav links
+  const navLinks = document.querySelectorAll(".nav-links a");
+  const navKeys = ["thesis", "portfolio", "news", "people"];
+  navLinks.forEach((a, i) => { if (navKeys[i]) a.textContent = t[navKeys[i]]; });
+
+  // Hero
+  const heroTag = document.querySelector(".hero-tag");
+  if (heroTag) heroTag.textContent = t.heroTag;
+  const heroH1 = document.querySelector(".hero-heading");
+  if (heroH1) heroH1.innerHTML = t.heroH1;
+  const heroSub = document.querySelector(".hero-sub");
+  if (heroSub) heroSub.textContent = t.heroSub;
+  const btns = document.querySelectorAll(".hero-actions a");
+  if (btns[0]) btns[0].textContent = t.viewPortfolio;
+  if (btns[1]) btns[1].textContent = t.workWithUs;
+
+  // Partners heading
+  const partnerH2 = document.getElementById("partnersHeading");
+  if (partnerH2) partnerH2.textContent = t.partnersHeading;
+
+  // Plan H sub
+  const planHSub = document.getElementById("planHSub");
+  if (planHSub) planHSub.textContent = currentLang === "ko" ? "호반그룹 CVC · 호주 파트너" : "Hoban Group CVC · Australian Partner";
+}
+
 </script>
 </body>
 </html>
