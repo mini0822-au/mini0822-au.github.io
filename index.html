@@ -3,109 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- SEO: Title & Description -->
 <title>AUmbrella Ventures | Australian Venture Capital Fund</title>
-<meta name="description" content="AUmbrella Ventures is an Australian venture capital fund investing in early-stage startups across Australia, Korea, and the US. 엄브렐라 벤처스 — bridging AU, KR, and global markets.">
-<meta name="keywords" content="AUmbrella Ventures, aumbrellavc, 엄브렐라벤처스, 엄브렐라 VC, Australian venture capital, Australia VC fund, startup investment Australia, early stage VC, AU KR US startup, Joon Min Yun">
+<meta name="description" content="AUmbrella Ventures is an Australian venture capital fund investing in early-stage startups across Australia, Korea, and the US.">
+<meta name="keywords" content="AUmbrella Ventures, aumbrellavc, 엄브렐라벤처스, Australian venture capital, Australia VC fund, early stage VC, Joon Min Yun">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://aumbrellavc.com/">
-
-<!-- Open Graph (카카오, 페이스북, 링크드인 공유시 미리보기) -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://aumbrellavc.com/">
 <meta property="og:title" content="AUmbrella Ventures | Australian Venture Capital Fund">
 <meta property="og:description" content="Bridging Australia and global markets — connecting capital, expertise, and networks to the startups reshaping industries.">
 <meta property="og:site_name" content="AUmbrella Ventures">
-
-<!-- Twitter Card -->
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AUmbrella Ventures | Australian Venture Capital Fund">
 <meta name="twitter:description" content="Australian VC fund investing across AU, KR, and US markets.">
-
-<!-- Structured Data (구글 검색 결과 강화) -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "AUmbrella Ventures",
-  "alternateName": ["aumbrellavc", "엄브렐라벤처스", "엄브렐라 VC"],
-  "url": "https://aumbrellavc.com",
-  "description": "Australian venture capital fund investing in early-stage startups across Australia, Korea, and the United States.",
-  "foundingLocation": {
-    "@type": "Place",
-    "name": "Sydney, Australia"
-  },
-  "areaServed": ["Australia", "Korea", "United States"]
-}
-
-// Language Toggle
-const translations = {
-  en: {
-    thesis: "Thesis",
-    portfolio: "Portfolio",
-    news: "News",
-    people: "People",
-    connect: "Connect →",
-    langBtn: "한국어",
-    heroTag: "Sydney, Australia · Global Reach",
-    heroH1: "Backing founders<br>who build the<br><em>next thing</em>",
-    heroSub: "AUmbrella Ventures bridges Australia and global markets — connecting capital, expertise, and networks to the startups reshaping industries.",
-    viewPortfolio: "View Portfolio",
-    workWithUs: "Work with us",
-    partnersHeading: "함께 협업하는 투자 파트너 / Co-investing Partners",
-  },
-  ko: {
-    thesis: "투자 철학",
-    portfolio: "포트폴리오",
-    news: "뉴스",
-    people: "팀",
-    connect: "연락하기 →",
-    langBtn: "English",
-    heroTag: "시드니, 호주 · 글로벌 투자",
-    heroH1: "다음을 만드는<br>창업자를<br><em>지원합니다</em>",
-    heroSub: "AUmbrella Ventures는 호주와 글로벌 시장을 연결하며, 산업을 재편하는 스타트업에 자본·전문성·네트워크를 제공합니다.",
-    viewPortfolio: "포트폴리오 보기",
-    workWithUs: "함께 일하기",
-    partnersHeading: "투자 파트너",
-  }
-};
-
-let currentLang = "en";
-
-function toggleLang() {
-  currentLang = currentLang === "en" ? "ko" : "en";
-  const t = translations[currentLang];
-  const btn = document.getElementById("langToggle");
-  if (btn) btn.textContent = t.langBtn;
-
-  // Nav links
-  const navLinks = document.querySelectorAll(".nav-links a");
-  const navKeys = ["thesis", "portfolio", "news", "people"];
-  navLinks.forEach((a, i) => { if (navKeys[i]) a.textContent = t[navKeys[i]]; });
-
-  // Hero
-  const heroTag = document.querySelector(".hero-tag");
-  if (heroTag) heroTag.textContent = t.heroTag;
-  const heroH1 = document.querySelector(".hero-heading");
-  if (heroH1) heroH1.innerHTML = t.heroH1;
-  const heroSub = document.querySelector(".hero-sub");
-  if (heroSub) heroSub.textContent = t.heroSub;
-  const btns = document.querySelectorAll(".hero-actions a");
-  if (btns[0]) btns[0].textContent = t.viewPortfolio;
-  if (btns[1]) btns[1].textContent = t.workWithUs;
-
-  // Partners heading
-  const partnerH2 = document.getElementById("partnersHeading");
-  if (partnerH2) partnerH2.textContent = t.partnersHeading;
-
-  // Plan H sub
-  const planHSub = document.getElementById("planHSub");
-  if (planHSub) planHSub.textContent = currentLang === "ko" ? "호반그룹 CVC · 호주 파트너" : "Hoban Group CVC · Australian Partner";
-}
-
-
-
+<meta name="naver-site-verification" content="e45babb9de2de6ca774e742db50d0565f46b1db9" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
@@ -155,7 +66,6 @@ nav {
 }
 
 .nav-logo span { color: var(--ochre); }
-
 
 .nav-links { display: flex; gap: 2.5rem; list-style: none; }
 .nav-links a {
@@ -562,7 +472,7 @@ footer {
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#"><img src="flag-au.jpg" style="height:13px;vertical-align:middle;margin-right:5px;border-radius:2px"><span>AU</span>mbrella Ventures<img src="flag-kor.jpg" style="height:13px;vertical-align:middle;margin-left:5px;border-radius:2px"></a>
+  <a class="nav-logo" href="#"><img src="flag-au.jpg" alt="AU" style="height:13px;vertical-align:middle;margin-right:5px;border-radius:2px"><span>AU</span>mbrella Ventures<img src="flag-kor.jpg" alt="KR" style="height:13px;vertical-align:middle;margin-left:5px;border-radius:2px"></a>
   <ul class="nav-links">
     <li><a href="#thesis">Thesis</a></li>
     <li><a href="#portfolio">Portfolio</a></li>
@@ -759,26 +669,19 @@ const portfolio = [
   { name:"Carted",       sector:"eCommerce",  region:"AU", flag:"🇦🇺", url:"https://www.carted.com/",          desc:"Save products from any store, get restock and sale alerts." },
   { name:"PFC Technology",sector:"Fintech",   region:"KOR",flag:"🇰🇷", url:"https://www.pfct.co.kr/en",        desc:"Innovative financial market solutions with AI technology." },
   { name:"Media Scope",  sector:"Entertainment",region:"KOR",flag:"🇰🇷",url:"https://www.mediascope.kr/",      desc:"No.1 smart sing (online karaoke) platform in Korea." },
-  { name:"Raenest",      sector:"Fintech",    region:"US", flag:"🇺🇸",  url:"https://raenest.com",              desc:"Multi-currency accounts built for Africa, moving at global speed." },
+  { name:"Raenest",      sector:"Fintech",    region:"US", flag:"🌍",  url:"https://raenest.com",              desc:"Multi-currency accounts built for Africa, moving at global speed." },
   { name:"Arintra",      sector:"Healthcare", region:"US", flag:"🇺🇸", url:"https://arintra.com",              desc:"Healthcare technology founded by serial entrepreneurs." },
   { name:"After.com",    sector:"Services",   region:"US", flag:"🇺🇸", url:"https://www.after.com/",           desc:"Compassionate online cremation services, simple and affordable." },
   { name:"TANGGapp",     sector:"Fintech",    region:"US", flag:"🇺🇸", url:"https://www.tanggapp.com/",        desc:"Easy US–Philippines money transfers at your fingertips." },
   { name:"OpenEnvoy",    sector:"Fintech",    region:"US", flag:"🇺🇸", url:"https://www.openenvoy.com/",       desc:"AI-powered AP automation: eliminate work, optimise cash flow." },
-  { name:"Chipper Cash", sector:"Fintech",    region:"US", flag:"🇺🇸",  url:"https://www.chippercash.com/",     desc:"Free international transfers, cards and investing for Africans." },
+  { name:"Chipper Cash", sector:"Fintech",    region:"US", flag:"🌍",  url:"https://www.chippercash.com/",     desc:"Free international transfers, cards and investing for Africans." },
   { name:"Copper",       sector:"Fintech",    region:"US", flag:"🇺🇸", url:"https://www.getcopper.com/",       desc:"Banking app for teens and parents — building financial literacy." },
   { name:"Zingbus",      sector:"Transport",  region:"IN", flag:"🇮🇳", url:"http://www.zingbus.com",           desc:"Safe, modern intercity bus travel across India." },
-  { name:"D3 Jubilee",   sector:"VC · LP", region:"KOR",flag:"🇰🇷", url:"https://d3jubilee.com/Portfolio",  desc:"Global impact VC active across Korea, US, Asia, and Africa. (KR VC — LP Investment)" },
-  { name:"Antler Korea", sector:"VC · LP", region:"KOR",flag:"🇰🇷", url:"https://www.antler.co/location/korea", desc:"Turning founder visions into reality — backing the best people. (KR VC — LP Investment)" },
+  { name:"D3 Jubilee",   sector:"VC · LP",    region:"KOR",flag:"🇰🇷", url:"https://d3jubilee.com/Portfolio",  desc:"Global impact VC active across Korea, US, Asia, and Africa. (KR VC — LP Investment)" },
+  { name:"Antler Korea", sector:"VC · LP",    region:"KOR",flag:"🇰🇷", url:"https://www.antler.co/location/korea", desc:"Turning founder visions into reality — backing the best people. (KR VC — LP Investment)" },
 ];
 
 // Populate portfolio
-function getFlagImg(region) {
-  const map = { AU: "flag-au.jpg", KOR: "flag-kor.jpg", US: "flag-us.jpg", IN: "flag-in.jpg" };
-  return map[region] || "flag-us.svg";
-};
-  return map[region] || "🌍";
-}
-
 function renderPortfolio(filter="all") {
   const grid = document.getElementById("portfolioGrid");
   const filtered = filter === "all" ? portfolio : portfolio.filter(c =>
@@ -787,7 +690,7 @@ function renderPortfolio(filter="all") {
   );
   grid.innerHTML = filtered.map(c => `
     <div class="portfolio-card" data-region="${c.region}" data-sector="${c.sector}">
-      <div class="card-sector"><img src="${getFlagImg(c.region)}" style="height:11px;vertical-align:middle;margin-right:5px;border-radius:1px">${c.sector}</div>
+      <div class="card-sector"><img src="${flagImg(c.region)}" style="height:11px;vertical-align:middle;margin-right:4px;border-radius:1px">${c.sector}</div>
       <div class="card-name">${c.name}</div>
       <div class="card-desc">${c.desc}</div>
       <a class="card-link" href="${c.url}" target="_blank" rel="noopener">Visit site →</a>
@@ -929,70 +832,56 @@ window.addEventListener('scroll', () => {
     : 'rgba(28,28,26,0.85)';
 });
 
-// Language Toggle
+function flagImg(region) {
+  const map = { AU: "flag-au.jpg", KOR: "flag-kor.jpg", US: "flag-us.jpg", IN: "flag-in.jpg" };
+  return map[region] || "flag-us.jpg";
+}
+
 const translations = {
   en: {
-    thesis: "Thesis",
-    portfolio: "Portfolio",
-    news: "News",
-    people: "People",
-    connect: "Connect →",
+    thesis: "Thesis", portfolio: "Portfolio", news: "News", people: "People",
     langBtn: "한국어",
     heroTag: "Sydney, Australia · Global Reach",
     heroH1: "Backing founders<br>who build the<br><em>next thing</em>",
     heroSub: "AUmbrella Ventures bridges Australia and global markets — connecting capital, expertise, and networks to the startups reshaping industries.",
-    viewPortfolio: "View Portfolio",
-    workWithUs: "Work with us",
-    partnersHeading: "함께 협업하는 투자 파트너 / Co-investing Partners",
+    viewPortfolio: "View Portfolio", workWithUs: "Work with us",
+    partnersHeading: "Co-investing Partners",
+    planHSub: "Hoban Group CVC · Australian Partner"
   },
   ko: {
-    thesis: "투자 철학",
-    portfolio: "포트폴리오",
-    news: "뉴스",
-    people: "팀",
-    connect: "연락하기 →",
+    thesis: "투자 철학", portfolio: "포트폴리오", news: "뉴스", people: "팀",
     langBtn: "English",
     heroTag: "시드니, 호주 · 글로벌 투자",
     heroH1: "다음을 만드는<br>창업자를<br><em>지원합니다</em>",
     heroSub: "AUmbrella Ventures는 호주와 글로벌 시장을 연결하며, 산업을 재편하는 스타트업에 자본·전문성·네트워크를 제공합니다.",
-    viewPortfolio: "포트폴리오 보기",
-    workWithUs: "함께 일하기",
+    viewPortfolio: "포트폴리오 보기", workWithUs: "함께 일하기",
     partnersHeading: "투자 파트너",
+    planHSub: "호반그룹 CVC · 호주 파트너"
   }
 };
 
 let currentLang = "en";
-
 function toggleLang() {
   currentLang = currentLang === "en" ? "ko" : "en";
   const t = translations[currentLang];
-  const btn = document.getElementById("langToggle");
-  if (btn) btn.textContent = t.langBtn;
-
-  // Nav links
+  document.getElementById("langToggle").textContent = t.langBtn;
   const navLinks = document.querySelectorAll(".nav-links a");
-  const navKeys = ["thesis", "portfolio", "news", "people"];
-  navLinks.forEach((a, i) => { if (navKeys[i]) a.textContent = t[navKeys[i]]; });
-
-  // Hero
+  ["thesis","portfolio","news","people"].forEach((k,i) => { if(navLinks[i]) navLinks[i].textContent = t[k]; });
   const heroTag = document.querySelector(".hero-tag");
-  if (heroTag) heroTag.textContent = t.heroTag;
+  if(heroTag) heroTag.textContent = t.heroTag;
   const heroH1 = document.querySelector(".hero-heading");
-  if (heroH1) heroH1.innerHTML = t.heroH1;
+  if(heroH1) heroH1.innerHTML = t.heroH1;
   const heroSub = document.querySelector(".hero-sub");
-  if (heroSub) heroSub.textContent = t.heroSub;
+  if(heroSub) heroSub.textContent = t.heroSub;
   const btns = document.querySelectorAll(".hero-actions a");
-  if (btns[0]) btns[0].textContent = t.viewPortfolio;
-  if (btns[1]) btns[1].textContent = t.workWithUs;
-
-  // Partners heading
-  const partnerH2 = document.getElementById("partnersHeading");
-  if (partnerH2) partnerH2.textContent = t.partnersHeading;
-
-  // Plan H sub
-  const planHSub = document.getElementById("planHSub");
-  if (planHSub) planHSub.textContent = currentLang === "ko" ? "호반그룹 CVC · 호주 파트너" : "Hoban Group CVC · Australian Partner";
+  if(btns[0]) btns[0].textContent = t.viewPortfolio;
+  if(btns[1]) btns[1].textContent = t.workWithUs;
+  const ph = document.getElementById("partnersHeading");
+  if(ph) ph.textContent = t.partnersHeading;
+  const ps = document.getElementById("planHSub");
+  if(ps) ps.textContent = t.planHSub;
 }
+
 </script>
 </body>
 </html>
